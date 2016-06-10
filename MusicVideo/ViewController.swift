@@ -13,7 +13,14 @@ class ViewController: UIViewController {
     // MARK:  Helper functions & callbacks
     
     func didLoadData(result: String) {
-        print(result)
+        
+        let alert = UIAlertController(title: (result), message: nil,
+                                        preferredStyle: .Alert)
+        let okAction = UIAlertAction(title: "Ok", style: .Default) {
+                action in // noops
+            }
+        alert.addAction(okAction)
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     
