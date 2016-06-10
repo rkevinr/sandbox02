@@ -12,6 +12,10 @@ class ViewController: UIViewController {
     
     // MARK:  Helper functions & callbacks
     
+    func didLoadData(result: String) {
+        print(result)
+    }
+    
     
     // MARK: View Lifecycle methods
 
@@ -20,10 +24,8 @@ class ViewController: UIViewController {
       
         let api = APIManager()
         api.loadData(
-            "https://itunes.apple.com/us/rss/topmusicvideos/limit=10/json") {
-                loadingStatus in
-                print(loadingStatus)
-            }
+            "https://itunes.apple.com/us/rss/topmusicvideos/limit=10/json",
+            completion: didLoadData)
     }
 
     override func didReceiveMemoryWarning() {
