@@ -3,7 +3,7 @@
 //  MusicVideo
 //
 //  Created by Kevin on 6/10/16.
-//  Copyright © 2016 Michael Rudowsky. All rights reserved.
+//  Copyright © 2016 Michael Rudowsky and student(s). All rights reserved.
 //
 
 import Foundation
@@ -21,16 +21,13 @@ class APIManager {
             
             guard error == nil else {
                 dispatch_async(dispatch_get_main_queue()) {
-                    completion(result: (error!.localizedDescription))
-                }
-                return  // should this be break vs. return?
+                    completion(result: (error!.localizedDescription)) } ; return
             }
             
             do {
-                if let json = try NSJSONSerialization.JSONObjectWithData(
-                data!, options: .AllowFragments) as? [String: AnyObject] {
-                    print(json)
-                    
+                if let json = try NSJSONSerialization.JSONObjectWithData(data!,
+                        options: .AllowFragments) as? [String: AnyObject] {
+                    // print(json)
                     let priority = DISPATCH_QUEUE_PRIORITY_HIGH
                     dispatch_async(dispatch_get_global_queue(priority, 0)) {
                         dispatch_async(dispatch_get_main_queue()) {
