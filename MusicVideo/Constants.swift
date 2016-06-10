@@ -11,3 +11,6 @@ import Foundation
 typealias JSONDictionary = [String: AnyObject]
 
 typealias JSONArray = Array<AnyObject>
+
+
+let Friday = "optional meeting"

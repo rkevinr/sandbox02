@@ -1,5 +1,5 @@
 //
-//  MusicVideo.swift
+//  Video.swift
 //  MusicVideo
 //
 //  Created by Kevin on 6/10/16.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Videos {
+class Video {
     
     private var _vName: String
 //    private var _vImageUrl: String
