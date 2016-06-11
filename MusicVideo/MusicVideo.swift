@@ -24,8 +24,8 @@ class MusicVideo {
     
     // MARK: lifecycle methods
     
+    // NOTE: relies on being passed the "entry" subtree of orig. iTunes tree
     init(data: JSONDictionary) {
-        
         if let name = data["im:name"] as? JSONDictionary,
                 vname = name["label"] as? String {
             _vName = vname

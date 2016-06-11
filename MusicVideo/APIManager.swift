@@ -28,8 +28,15 @@ class APIManager {
             
             do {
                 if let json = try NSJSONSerialization.JSONObjectWithData(data!,
-                        options: .AllowFragments) as? JSONDictionary {
-                    // print(json)
+                        options: .AllowFragments) as? JSONDictionary,
+                        f = json["feed"] as? JSONDictionary,
+                        entries = f["entry"] as? JSONArray {
+                    
+                    for e in entries {
+                        let entry = MusicVideo(data: e as! JSONDictionary)
+                        self.videos.append(entry)
+                    }
+                    
                     let priority = DISPATCH_QUEUE_PRIORITY_HIGH
                     dispatch_async(dispatch_get_global_queue(priority, 0)) {
                         dispatch_async(dispatch_get_main_queue()) {
