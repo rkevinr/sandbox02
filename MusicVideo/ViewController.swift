@@ -12,9 +12,9 @@ class ViewController: UIViewController {
     
     // MARK:  Helper functions & callbacks
     
-    func didLoadData(result: String) {
+    func didLoadData(result: [MusicVideo]) {
         
-        let alert = UIAlertController(title: (result), message: nil,
+        let alert = UIAlertController(title: ("# videos returned: \(result.count)"), message: nil,
                                         preferredStyle: .Alert)
         let okAction = UIAlertAction(title: "Ok", style: .Default) {
                 action in // noops

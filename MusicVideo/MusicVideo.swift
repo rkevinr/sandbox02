@@ -8,18 +8,18 @@
 
 import Foundation
 
-class Videos {
+class MusicVideo {
     
     private var _vName: String
-//    private var _vImageUrl: String
-//    private var _vVideoUrl: String
+    private var _vImageUrl: String
+    private var _vVideoUrl: String
     
     
     // MARK: getters
     
     var vName: String { return _vName }
-//    var vImageUrl: String { return _vImageUrl }
-//    var vVideoUrl: String { return _vVideoUrl }
+    var vImageUrl: String { return _vImageUrl }
+    var vVideoUrl: String { return _vVideoUrl }
     
     
     // MARK: lifecycle methods
@@ -35,13 +35,18 @@ class Videos {
         
         print("video name:  \(_vName)")
         
-//        if let image = data["im:image"] as? JSONArray,
-//                url = image[0] as? JSONDictionary,
-//                _vImageUrl = url["label"] {
-//        } else {
-//            _vImageUrl = ""
-//        }
-//        
-//        _vVideoUrl = ""
+        if let image = data["im:image"] as? JSONArray,
+                url = image[0] as? JSONDictionary,
+                vImageUrl = url["label"] as? String {
+            _vImageUrl = vImageUrl
+        } else {
+            _vImageUrl = ""
+        }
+      
+        // _vImageUrl = ""
+        
+        
+        
+        _vVideoUrl = ""
     }
 }

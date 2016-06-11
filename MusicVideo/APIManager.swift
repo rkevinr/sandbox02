@@ -10,7 +10,9 @@ import Foundation
 
 class APIManager {
     
-    func loadData(urlString: String, completion: (result: String) -> () ) {
+    private var videos: [MusicVideo] = [MusicVideo]()
+    
+    func loadData(urlString: String, completion: (result: [MusicVideo]) -> () ) {
         // preclude session caching
         let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
         let session = NSURLSession(configuration: config)
@@ -20,8 +22,8 @@ class APIManager {
             (data, response, error) -> () in
             
             guard error == nil else {
-                dispatch_async(dispatch_get_main_queue()) {
-                    completion(result: (error!.localizedDescription)) } ; return
+                print("error:  \(error!.localizedDescription)")
+                return
             }
             
             do {
@@ -31,13 +33,15 @@ class APIManager {
                     let priority = DISPATCH_QUEUE_PRIORITY_HIGH
                     dispatch_async(dispatch_get_global_queue(priority, 0)) {
                         dispatch_async(dispatch_get_main_queue()) {
-                            completion(result: "JSONSerialization successful")
+                            print("JSONSerialization successful")
+                            completion(result: self.videos)
                         }
                     }
                 }
             } catch {
                 dispatch_async(dispatch_get_main_queue()) {
-                    completion(result: "error in JSONSerialization")
+                    // completion(result: "error in JSONSerialization")
+                    print("error in JSONSerialization")
                 }
             }
         }
